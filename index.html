@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fair Invitation</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: url('https://files.oaiusercontent.com/file-jEWxxBqlXdhMD9kJzQ39RMHS?se=2024-09-23T21%3A46%3A52Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dfc292740-f5a7-46bc-9e86-fb6f2be73c88.webp&sig=2V5rktJC/Lk1UsryUueEoPhJ02K8yBHpQNDrgli5gxo%3D') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .invitation {
+      margin-top: 20px;
+    }
+
+    .fair-img {
+      width: 300px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .invitation-text {
+      font-size: 22px;
+      font-weight: bold;
+      color: #2C3E50;
+      margin-bottom: 15px;
+      display: none;
+    }
+
+    .highlight {
+      color: #e74c3c;
+    }
+
+    .crackers {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .cracker {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #ff6347;
+      border-radius: 50%;
+      animation: explode 2s ease-in infinite;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translate(-50px, -200px) scale(1.5);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(100px, 0) scale(1);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="clickMeBtn" onclick="showInvitation()">Click Me</button>
+    <div id="invitationSection" class="invitation hidden">
+      <p id="line1" class="invitation-text">You are <span class="highlight">heartly invited</span></p>
+      <p id="line2" class="invitation-text">to the <strong>Banahatti Fair by Akshay</strong></p>
+      <p id="line3" class="invitation-text">on <strong>September 24, 2024</strong></p>
+      <p id="line4" class="invitation-text">Join us for a day full of joy,</p>
+      <p id="line5" class="invitation-text">culture, and celebration!</p>
+    </div>
+    <div class="crackers" id="crackersAnimation"></div>
+  </div>
+
+  <script>
+    function showInvitation() {
+      document.getElementById("invitationSection").classList.remove("hidden");
+      startCrackerAnimation();
+      playVoiceMessage();
+      showLines();
+    }
+
+    function startCrackerAnimation() {
+      const crackers = document.getElementById('crackersAnimation');
+      for (let i = 0; i < 30; i++) {
+        const cracker = document.createElement('div');
+        cracker.classList.add('cracker');
+        cracker.style.left = Math.random() * 100 + 'vw';
+        cracker.style.animationDuration = Math.random() * 2 + 2 + 's';
+        crackers.appendChild(cracker);
+      }
+    }
+
+    function playVoiceMessage() {
+      const msg = new SpeechSynthesisUtterance("You are heartly invited to the Banahatti Fair by Akshay, on september 24, 2024,Join us for a day full of joy,culture, and celebration!");
+      window.speechSynthesis.speak(msg);
+    }
+
+    function showLines() {
+      const lines = ['line1', 'line2', 'line3', 'line4', 'line5'];
+      let delay = 500;
+      lines.forEach((line, index) => {
+        setTimeout(() => {
+          document.getElementById(line).style.display = 'block';
+        }, delay);
+        delay += 1000;
+      });
+    }
+  </script>
+</body>
+</html>
